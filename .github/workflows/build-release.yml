@@ -66,5 +66,8 @@ jobs:
       - name: Publish to Workshop
         shell: bash
         run: |
-          steamcmd +login ${{ secrets.WORKSHOP_USERNAME }} ${{ secrets.WORKSHOP_PASSWORD }} +workshop_build_item ${{ steps.steam-metadata.outputs.vdf }} +quit
-
+          printf '%s' '${{ secrets.config }}' > "$STEAM_DIR/config/config.vdf"
+          steamcmd +login ${{ secrets.WORKSHOP_USERNAME }} +quit
+          rm -rf "$STEAM_CMD"
+          rm -rf "$STEAM_DIR"
+          rm -rf "$STEAM_TEMP"
