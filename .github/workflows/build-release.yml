@@ -68,8 +68,9 @@ jobs:
         run: |
           printf '%s' '${{ secrets.CONFIG }}' > "$STEAM_DIR/config/config.vdf"
           steamcmd +login ${{ secrets.WORKSHOP_USERNAME }} +quit
-
+  
       - name: Cleanup
+        if: ${{ always() }}
         shell: bash
         run: |
           rm -rf "$STEAM_CMD"
